@@ -15,9 +15,10 @@
   <script>
     const output = document.getElementById("output");
 
+    // This output doesn't need a delay before it starts, so it doesn't need a Promise.
     output.innerHTML = "Getting out of bed. . .<br>Trying to wake up. . .";
 
-    // In each step, delay is multiplied by the number of hours the previous step should take.
+    // In each step, 'delay' is multiplied by the number of hours the previous step should take.
     function simulateDay(delay) {
         return new Promise(resolve => {
             setTimeout(() => {
@@ -57,18 +58,18 @@
         }))
         .then(() => new Promise(resolve => {
             setTimeout(() => {
-                // Here is my random twist: a 50% chance of doing schoolwork or watching a movie
+                // Here is my random twist: a 50% chance of doing schoolwork or watching a movie.
                 output.innerHTML += Math.random() < 0.5 
                   ? "<p>Doing schoolwork. . .</p>" 
                   : "<p>All my schoolwork is done!<br>Let's watch a movie!</p>";
-               resolve();
+                resolve();
             }, delay);
         }))
         .then(() => new Promise(resolve => {
             setTimeout(() => {
                 output.innerHTML += "<p>Getting ready for bed. . .</p>";
                 resolve();
-            }, delay * 5);
+            }, delay * 4);
         }))
         .then(() => new Promise(resolve => {
             setTimeout(() => {
@@ -85,4 +86,5 @@
 
 </body>
 </html>
-  
+
+<!-- https://github.com/Greg01001000/cs81-module7a-dailysim -->
