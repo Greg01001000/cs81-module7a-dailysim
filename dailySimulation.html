@@ -17,6 +17,7 @@
 
     output.innerHTML = "Getting out of bed. . .<br>Trying to wake up. . .";
 
+    // In each step, delay is multiplied by the number of hours the previous step should take.
     function simulateDay(delay) {
         return new Promise(resolve => {
             setTimeout(() => {
@@ -56,8 +57,11 @@
         }))
         .then(() => new Promise(resolve => {
             setTimeout(() => {
-                output.innerHTML += "<p>Doing schoolwork. . .</p>";
-                resolve();
+                // Here is my random twist: a 50% chance of doing schoolwork or watching a movie
+                output.innerHTML += Math.random() < 0.5 
+                  ? "<p>Doing schoolwork. . .</p>" 
+                  : "<p>All my schoolwork is done!<br>Let's watch a movie!</p>";
+               resolve();
             }, delay);
         }))
         .then(() => new Promise(resolve => {
@@ -75,8 +79,8 @@
     }
     // Start the simulation. For real time, use 3600000 (1 hour) as the delay. Each  
     // step multiplies its delay by the number of hours the previous step should take.
-    // For testing, you can use a smaller value, e.g., 1000.
-    simulateDay(1000);
+    // For testing, you can use a smaller value here, e.g., 1000.
+    simulateDay(3600000);
   </script>
 
 </body>
