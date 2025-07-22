@@ -14,9 +14,69 @@
 
   <script>
     const output = document.getElementById("output");
-    
-    # ADD CODE HERE
 
+    output.innerHTML = "Getting out of bed. . .<br>Trying to wake up. . .";
+
+    function simulateDay(delay) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Going out to do ministry work. . .</p>";
+                resolve();
+            }, delay);
+        })
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Stopping for lunch. . .</p>";
+                resolve();
+            }, delay * 2);
+        }))
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Going to Bible meeting. . .</p>";
+                resolve();
+            }, delay);
+        }))
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Going home. . .</p>";
+                resolve();
+            }, delay * 3);
+        }))
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Doing schoolwork. . .</p>";
+                resolve();
+            }, delay * 0.2);
+        }))
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Having dinner. . .</p>";
+                resolve();
+            }, delay * 3);
+        }))
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Doing schoolwork. . .</p>";
+                resolve();
+            }, delay);
+        }))
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Getting ready for bed. . .</p>";
+                resolve();
+            }, delay * 5);
+        }))
+        .then(() => new Promise(resolve => {
+            setTimeout(() => {
+                output.innerHTML += "<p>Sleeping. . .<br>(End of day)</p>";
+                resolve();
+            }, delay);
+        }));
+    }
+    // Start the simulation. For real time, use 3600000 (1 hour) as the delay. Each  
+    // step multiplies its delay by the number of hours the previous step should take.
+    // For testing, you can use a smaller value, e.g., 1000.
+    simulateDay(1000);
   </script>
 
 </body>
